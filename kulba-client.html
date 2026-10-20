@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1E3A2F">
+<title>Кулба — Ҳисоби ман</title>
+<style>
+:root{--pine:#1E3A2F;--pine2:#2D5443;--mist:#EEF1EC;--paper:#fff;--ink:#1B2420;--soft:#5C6A62;--line:#DCE3DD;--amber:#B8741A;--amberbg:#FBF1DF;--red:#A63A2B;--redbg:#F9E7E3;--green:#2F7A4B}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Roboto,Arial,sans-serif;background:var(--mist);color:var(--ink);line-height:1.45;min-height:100vh;padding-bottom:env(safe-area-inset-bottom)}
+button{font-family:inherit;font-size:16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
+.top{background:var(--pine);color:#fff;padding:calc(env(safe-area-inset-top) + 22px) 16px 26px}
+.top .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:40px;border-radius:10px;background:var(--pine2);display:flex;align-items:center;justify-content:center;font-size:22px}
+.top h1{margin:0;font-size:22px}.top p{margin:0;font-size:13px;opacity:.75}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:-14px}
+.card h2{margin:0 0 6px;font-size:18px}.card p{margin:0;color:var(--soft);font-size:14px}
+.msg{margin-top:12px;padding:11px 13px;border-radius:10px;font-size:14px}
+.msg.err{background:var(--redbg);color:var(--red)}.msg.info{background:#E8F0EA;color:var(--pine)}.msg.warn{background:var(--amberbg);color:var(--amber)}
+.hidden{display:none!important}
+.who{display:flex;justify-content:space-between;align-items:flex-start;margin:18px 0 12px;gap:10px}
+.who h2{margin:0;font-size:20px;word-break:break-word}
+.link{background:none;border:0;color:var(--pine2);font-weight:600;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.link:focus-visible,.tab:focus-visible,.order-h:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.vip{display:inline-block;background:var(--amberbg);color:var(--amber);border-radius:20px;padding:2px 10px;font-size:13px;font-weight:700;margin-left:6px;vertical-align:middle}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
+.stat .l{font-size:13px;color:var(--soft)}.stat .v{font-size:21px;font-weight:700;margin-top:2px;word-break:break-word}
+.stat .v small{font-size:13px;font-weight:500;color:var(--soft)}
+.stat.debt{background:var(--redbg);border-color:#EBC9C2}.stat.debt .v{color:var(--red)}
+.stat.ok .v{color:var(--green)}
+.stat.bonus{background:var(--amberbg);border-color:#EBD7AE}.stat.bonus .v{color:var(--amber)}
+.wide{grid-column:1/-1}
+.tabs{display:flex;gap:6px;margin:20px 0 12px;border-bottom:1.5px solid var(--line)}
+.tab{background:none;border:0;padding:10px 14px;font-weight:600;color:var(--soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1.5px}
+.tab[aria-selected="true"]{color:var(--pine);border-bottom-color:var(--pine)}
+.order{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.order-h{width:100%;text-align:left;background:none;border:0;padding:13px 14px;display:flex;justify-content:space-between;gap:10px;cursor:pointer;color:inherit}
+.order-h .d{font-size:13px;color:var(--soft)}.order-h .n{font-size:14px;color:var(--soft)}
+.order-h .t{font-weight:700;font-size:17px;white-space:nowrap}
+.order-b{border-top:1px dashed var(--line);padding:6px 14px 12px}
+.item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #F0F3F0;font-size:15px}
+.item:last-child{border-bottom:0}.item .q{color:var(--soft);font-size:13px}.item .s{font-weight:600;white-space:nowrap}
+.bonusline{display:flex;justify-content:space-between;margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--amberbg);color:var(--amber);font-size:14px;font-weight:600}
+.empty{text-align:center;color:var(--soft);padding:28px 10px}
+.debt-card{background:var(--paper);border:1px solid #EBC9C2;border-radius:12px;padding:14px;margin-bottom:10px}
+.debt-card .row{display:flex;justify-content:space-between;gap:10px}
+.debt-card .amt{font-weight:700;color:var(--red);font-size:18px}.debt-card .old{font-size:13px;color:var(--red);margin-top:4px}
+.pay{display:flex;justify-content:space-between;gap:10px;font-size:14px;color:var(--soft);padding:5px 0;border-top:1px solid #F0F3F0}
+.pay.p b{color:var(--green)}.pay.m b{color:var(--red)}
+.sub{font-size:13px;color:var(--soft);margin:10px 0 2px}
+.foot{text-align:center;color:var(--soft);font-size:12px;margin-top:22px}
+</style>
+</head>
+<body>
+<header class="top"><div class="in"><div class="logo" aria-hidden="true">🪵</div><div><h1>Кулба</h1><p>Ҳисоби харидҳои шумо</p></div></div></header>
+<main class="wrap">
+  <section id="emptyBox" class="card hidden">
+    <h2>Ҳисоби шахсии шумо</h2>
+    <p>Барои дидани харидҳо ва қарзи худ аз мағоза пайванди шахсӣ пурсед ва онро кушоед.</p>
+  </section>
+  <div id="errMsg" class="msg err hidden" role="alert"></div>
+  <section id="acct" class="hidden">
+    <div class="who">
+      <div><h2><span id="cName"></span><span id="vipBadge" class="vip hidden">⭐ VIP</span></h2></div>
+      <button id="exitBtn" class="link" type="button">Баромадан</button>
+    </div>
+    <div id="note" class="msg info"></div>
+    <div class="stats" style="margin-top:12px">
+      <div class="stat wide"><div class="l">Ҳамагӣ харид кардаед</div><div class="v" id="sTotal"></div></div>
+      <div class="stat"><div class="l">Шумораи харидҳо</div><div class="v" id="sCount"></div></div>
+      <div class="stat" id="sDebtBox"><div class="l">Қарзи ҷорӣ</div><div class="v" id="sDebt"></div></div>
+      <div class="stat bonus wide hidden" id="sBonusBox"><div class="l" id="bonusL">Бонус</div><div class="v" id="sBonus"></div></div>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" id="tabOrders" aria-selected="true" type="button">Харидҳо</button>
+      <button class="tab" role="tab" id="tabDebts" aria-selected="false" type="button">Қарзҳо</button>
+    </div>
+    <div id="paneOrders"></div>
+    <div id="paneDebts" class="hidden"></div>
+  </section>
+  <div class="foot">Мағозаи «Кулба» · Истравшан</div>
+</main>
+<script>
+(function(){
+'use strict';
+var CK='kulba_client_snap_v2',STALE_DAYS=3,OLD_DEBT_DAYS=30;
+/*PURE*/
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(n){n=Number(n)||0;var neg=n<0;n=Math.abs(n);var s=(Math.round(n*100)/100).toFixed(2);
+ if(s.slice(-3)==='.00')s=s.slice(0,-3);else if(s.slice(-1)==='0')s=s.slice(0,-1);
+ var q=s.split('.');q[0]=q[0].replace(/\B(?=(\d{3})+(?!\d))/g,' ');return (neg?'-':'')+q.join(',')}
+function toDate(v){if(!v)return null;var d=new Date(v);return isNaN(d.getTime())?null:d}
+function p2(n){return (n<10?'0':'')+n}
+function fmtDate(v){var d=toDate(v);return d?p2(d.getDate())+'.'+p2(d.getMonth()+1)+'.'+d.getFullYear():''}
+function fmtDT(v){var d=toDate(v);return d?fmtDate(v)+' '+p2(d.getHours())+':'+p2(d.getMinutes()):''}
+function N(v){v=+v;return isFinite(v)&&Math.abs(v)<1e12?v:0}
+function S(v,n){return String(v==null?'':v).slice(0,n||120)}
+function D(v){return toDate(v)?String(v):''}
+function decode(h){
+ h=String(h).replace(/^#/,'');try{h=decodeURIComponent(h)}catch(e){}
+ h=h.replace(/ /g,'+').replace(/-/g,'+').replace(/_/g,'/').replace(/\s/g,'');
+ while(h.length%4)h+='=';
+ var bin=atob(h),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+ return JSON.parse(new TextDecoder('utf-8').decode(u))}
+function cleanP(p){
+ if(!p||typeof p!=='object'||Array.isArray(p)||!('spent' in p||'items' in p))return null;
+ var it=Array.isArray(p.items)?p.items:[],dh=Array.isArray(p.dh)?p.dh:[];
+ return {name:S(p.name),vip:p.vip===true,rate:Math.min(Math.max(N(p.rate),0),100),bonus:N(p.bonus),spent:N(p.spent),
+  orders:Math.floor(N(p.orders)),debt:N(p.debt),dd:D(p.dd),t:D(p.t),
+  items:it.slice(0,100).map(function(i){i=i||{};return {d:D(i.d),n:S(i.n),q:N(i.q),u:S(i.u,20),s:N(i.s)}}),
+  dh:dh.slice(0,30).map(function(h){h=h||{};return {d:D(h.d),a:N(h.a),t:S(h.t,2)}})}}
+function group(items){var m=Object.create(null),o=[];
+ items.forEach(function(i){var k=i.d||'?';if(!m[k]){m[k]={d:i.d,items:[],total:0};o.push(m[k])}m[k].items.push(i);m[k].total+=i.s});
+ o.sort(function(a,b){return (+toDate(b.d)||0)-(+toDate(a.d)||0)});return o}
+/*END*/
+function $(i){return document.getElementById(i)}
+function money(n){return fmt(n)+' <small>с.</small>'}
+
+function renderOrders(p,os,cnt){
+ var el=$('paneOrders');
+ if(!os.length){el.innerHTML='<div class="empty">Харид ҳанӯз сабт нашудааст.</div>';return}
+ var h='';
+ os.forEach(function(o,i){
+  var body=o.items.map(function(it){return '<div class="item"><div>'+esc(it.n)+'<div class="q">'+fmt(it.q)+' '+esc(it.u)+'</div></div><div class="s">'+fmt(it.s)+'</div></div>'}).join('');
+  if(p.rate>0)body+='<div class="bonusline"><span>Бонус</span><span>+'+fmt(o.total*p.rate/100)+' с.</span></div>';
+  h+='<div class="order"><button class="order-h" type="button" aria-expanded="false" data-i="'+i+'"><div><div class="d">'+esc(fmtDate(o.d))+'</div><div class="n">'+o.items.length+' навъи мол</div></div><div class="t">'+fmt(o.total)+' с.</div></button><div class="order-b hidden" id="ob'+i+'">'+body+'</div></div>';
+ });
+ if(cnt>os.length)h+='<div class="sub">Танҳо харидҳои охирин нишон дода шудаанд.</div>';
+ el.innerHTML=h;
+ Array.prototype.forEach.call(el.querySelectorAll('.order-h'),function(b){
+  b.addEventListener('click',function(){var x=$('ob'+b.getAttribute('data-i')),o=x.classList.contains('hidden');x.classList.toggle('hidden');b.setAttribute('aria-expanded',o?'true':'false')});
+ });
+}
+function renderDebts(p){
+ var el=$('paneDebts');
+ if(!(p.debt>0)&&!p.dh.length){el.innerHTML='<div class="empty">Шумо қарз надоред. Ташаккур!</div>';return}
+ var dd=toDate(p.dd),age=dd?Math.floor((Date.now()-dd.getTime())/864e5):0;
+ var h='<div class="debt-card"><div class="row"><div style="font-size:13px;color:var(--soft)">'+(p.debt>0&&dd?'Аз '+esc(fmtDate(p.dd)):'Қарз')+'</div><div class="amt">'+(p.debt>0?fmt(p.debt)+' с.':'0 с.')+'</div></div>';
+ if(p.debt>0&&age>=OLD_DEBT_DAYS)h+='<div class="old">Зиёда аз '+OLD_DEBT_DAYS+' рӯз аст. Лутфан пардохт кунед.</div>';
+ if(p.dh.length){
+  h+='<div class="sub">Таърих</div>';
+  p.dh.forEach(function(x){
+   var plus=x.t==='+',pay=x.t==='-';
+   h+='<div class="pay '+(pay?'p':plus?'m':'')+'"><span>'+esc(fmtDate(x.d))+'</span><b>'+(plus?'+ ':pay?'− ':'↩ ')+fmt(x.a)+' с.</b></div>';
+  });
+ }
+ el.innerHTML=h+'</div>';
+}
+function render(p,savedAt){
+ var os=group(p.items),cnt=Math.max(p.orders,os.length);
+ $('cName').textContent=p.name||'Мизоҷи азиз';
+ $('vipBadge').classList.toggle('hidden',!p.vip);
+ $('sTotal').innerHTML=money(p.spent);
+ $('sCount').textContent=fmt(cnt);
+ $('sDebt').innerHTML=p.debt>0?money(p.debt):'Нест';
+ $('sDebtBox').className='stat '+(p.debt>0?'debt':'ok');
+ $('sBonusBox').classList.toggle('hidden',!(p.vip||p.bonus>0));
+ $('bonusL').textContent='Бонуси ҷамъшуда'+(p.rate>0?' ('+fmt(p.rate)+'%)':'');
+ $('sBonus').innerHTML=money(p.bonus);
+ var t=p.t||(savedAt?new Date(savedAt).toISOString():''),dt=toDate(t),stale=dt&&(Date.now()-dt.getTime())>STALE_DAYS*864e5;
+ var n=$('note');
+ n.className='msg '+(stale?'warn':'info');
+ n.textContent=(dt?'Маълумот то '+fmtDT(t)+'. ':'')+(stale?'Он кӯҳна шуда метавонад — аз мағоза пайванди нав пурсед.':'Барои навсозӣ аз мағоза пайванди нав пурсед.');
+ renderOrders(p,os,cnt);renderDebts(p);
+ $('tabDebts').textContent=p.debt>0?'Қарзҳо •':'Қарзҳо';
+ $('emptyBox').classList.add('hidden');$('acct').classList.remove('hidden');
+}
+function showErr(t){var m=$('errMsg');m.textContent=t;m.classList.toggle('hidden',!t)}
+function selectTab(w){var o=w==='orders';
+ $('tabOrders').setAttribute('aria-selected',o?'true':'false');$('tabDebts').setAttribute('aria-selected',o?'false':'true');
+ $('paneOrders').classList.toggle('hidden',!o);$('paneDebts').classList.toggle('hidden',o)}
+
+function load(){
+ var p=null,saved=0,err='';
+ if(location.hash.length>1){
+  try{p=cleanP(decode(location.hash));if(!p)throw new Error('bad')}
+  catch(e){p=null;err='Пайванд нодуруст ё нопурра аст. Аз мағоза пайванди навро пурсед.'}
+  if(p){saved=Date.now();try{localStorage.setItem(CK,JSON.stringify({t:saved,p:p}))}catch(e){}}
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+ }
+ if(!p){try{var c=JSON.parse(localStorage.getItem(CK)||'null');if(c&&c.p){p=cleanP(c.p);saved=+c.t||0}}catch(e){}}
+ showErr(err);selectTab('orders');
+ if(p)render(p,saved);
+ else{$('acct').classList.add('hidden');$('emptyBox').classList.remove('hidden')}
+}
+$('tabOrders').addEventListener('click',function(){selectTab('orders')});
+$('tabDebts').addEventListener('click',function(){selectTab('debts')});
+$('exitBtn').addEventListener('click',function(){
+ try{localStorage.removeItem(CK)}catch(e){}
+ showErr('');$('acct').classList.add('hidden');$('emptyBox').classList.remove('hidden');selectTab('orders')});
+window.addEventListener('hashchange',load);
+load();
+})();
+</script>
+</body>
+</html>
