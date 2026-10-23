@@ -1,521 +1,60 @@
 <!DOCTYPE html>
-<html lang="tg">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1E3A2F">
-<title>Кулба — Ҳисоби ман</title>
+<html lang="tg"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>КУЛБА — ҳисоби шумо</title>
 <style>
-:root{
-  --pine:#1E3A2F; --pine2:#2D5443; --moss:#6E8B74; --mist:#EEF1EC; --paper:#FFFFFF;
-  --ink:#1B2420; --soft:#5C6A62; --line:#DCE3DD; --amber:#B8741A; --amberbg:#FBF1DF;
-  --red:#A63A2B; --redbg:#F9E7E3; --green:#2F7A4B;
-}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Roboto,Arial,sans-serif;background:var(--mist);color:var(--ink);line-height:1.45;min-height:100vh;padding-bottom:env(safe-area-inset-bottom)}
-button,input{font-family:inherit;font-size:16px}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px 40px}
-
-/* Header */
-.top{background:var(--pine);color:#fff;padding:calc(env(safe-area-inset-top) + 22px) 16px 26px}
-.top .in{max-width:560px;margin:0 auto}
-.brand{display:flex;align-items:center;gap:10px}
-.logo{width:40px;height:40px;border-radius:10px;background:var(--pine2);display:flex;align-items:center;justify-content:center;font-size:22px}
-.brand h1{margin:0;font-size:22px;letter-spacing:.2px}
-.brand p{margin:0;font-size:13px;opacity:.75}
-
-/* Login card */
-.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
-.login{margin-top:-14px}
-.login h2{margin:0 0 4px;font-size:18px}
-.login p{margin:0 0 14px;color:var(--soft);font-size:14px}
-.field{display:flex;gap:8px}
-.field input{flex:1;min-width:0;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);outline:none}
-.field input:focus{border-color:var(--pine2)}
-.btn{background:var(--pine);color:#fff;border:0;border-radius:10px;padding:13px 18px;font-weight:600;cursor:pointer}
-.btn:active{background:var(--pine2)}
-.btn:focus-visible,.link:focus-visible,.tab:focus-visible,.order-h:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-.btn[disabled]{opacity:.6}
-.msg{margin-top:12px;padding:11px 13px;border-radius:10px;font-size:14px}
-.msg.err{background:var(--redbg);color:var(--red)}
-.msg.info{background:#E8F0EA;color:var(--pine)}
-.hidden{display:none!important}
-
-/* Profile summary */
-.who{display:flex;justify-content:space-between;align-items:flex-start;margin:18px 0 12px;gap:10px}
-.who h2{margin:0;font-size:20px}
-.who .ph{color:var(--soft);font-size:14px}
-.link{background:none;border:0;color:var(--pine2);font-weight:600;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
-.vip{display:inline-block;background:var(--amberbg);color:var(--amber);border-radius:20px;padding:2px 10px;font-size:13px;font-weight:700;margin-left:6px;vertical-align:middle}
-
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 14px}
-.stat .l{font-size:13px;color:var(--soft)}
-.stat .v{font-size:21px;font-weight:700;margin-top:2px;word-break:break-word}
-.stat .v small{font-size:13px;font-weight:500;color:var(--soft)}
-.stat.debt{background:var(--redbg);border-color:#EBC9C2}
-.stat.debt .v{color:var(--red)}
-.stat.ok .v{color:var(--green)}
-.stat.bonus{background:var(--amberbg);border-color:#EBD7AE}
-.stat.bonus .v{color:var(--amber)}
-.stat.wide{grid-column:1 / -1}
-
-/* Tabs */
-.tabs{display:flex;gap:6px;margin:20px 0 12px;border-bottom:1.5px solid var(--line)}
-.tab{background:none;border:0;padding:10px 14px;font-weight:600;color:var(--soft);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1.5px}
-.tab[aria-selected="true"]{color:var(--pine);border-bottom-color:var(--pine)}
-
-/* Orders */
-.order{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;overflow:hidden}
-.order-h{width:100%;text-align:left;background:none;border:0;padding:13px 14px;display:flex;justify-content:space-between;gap:10px;cursor:pointer;color:inherit}
-.order-h .d{font-size:13px;color:var(--soft)}
-.order-h .t{font-weight:700;font-size:17px;text-align:right;white-space:nowrap}
-.order-h .n{font-size:14px;color:var(--soft)}
-.order-b{border-top:1px dashed var(--line);padding:6px 14px 12px}
-.item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #F0F3F0;font-size:15px}
-.item:last-child{border-bottom:0}
-.item .q{color:var(--soft);font-size:13px}
-.item .s{font-weight:600;white-space:nowrap}
-.bonusline{display:flex;justify-content:space-between;margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--amberbg);color:var(--amber);font-size:14px;font-weight:600}
-.empty{text-align:center;color:var(--soft);padding:28px 10px}
-
-/* Debts */
-.debt-card{background:var(--paper);border:1px solid #EBC9C2;border-radius:12px;padding:14px;margin-bottom:10px}
-.debt-card .row{display:flex;justify-content:space-between;gap:10px}
-.debt-card .amt{font-weight:700;color:var(--red);font-size:18px}
-.debt-card .old{font-size:13px;color:var(--red);margin-top:4px}
-.pay{display:flex;justify-content:space-between;font-size:14px;color:var(--soft);padding:5px 0;border-top:1px solid #F0F3F0}
-.pay b{color:var(--green)}
-.sub{font-size:13px;color:var(--soft);margin:10px 0 2px}
-
-.foot{text-align:center;color:var(--soft);font-size:12px;margin-top:22px}
-.spin{display:inline-block;width:16px;height:16px;border:2.5px solid #fff5;border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:6px}
-@keyframes sp{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.spin{animation:none}}
-</style>
-</head>
-<body>
-
-<header class="top">
-  <div class="in">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">🪵</div>
-      <div>
-        <h1>Кулба</h1>
-        <p>Ҳисоби харидҳои шумо</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main class="wrap">
-
-  <!-- Login -->
-  <section id="loginBox" class="card login">
-    <h2>Рақами телефонро ворид кунед</h2>
-    <p>Бо рақаме, ки ҳангоми харид ба мағоза додаед.</p>
-    <div class="field">
-      <input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Масалан: 92 123 45 67" aria-label="Рақами телефон">
-      <button id="goBtn" class="btn" type="button">Дидан</button>
-    </div>
-    <div id="loginMsg" class="msg err hidden" role="alert"></div>
-  </section>
-
-  <!-- Account -->
-  <section id="acct" class="hidden">
-    <div class="who">
-      <div>
-        <h2><span id="cName"></span><span id="vipBadge" class="vip hidden">⭐ VIP</span></h2>
-        <div class="ph" id="cPhone"></div>
-      </div>
-      <div style="text-align:right">
-        <button id="refreshBtn" class="link" type="button">Навсозӣ</button><br>
-        <button id="exitBtn" class="link" type="button">Баромадан</button>
-      </div>
-    </div>
-
-    <div id="offlineMsg" class="msg info hidden"></div>
-
-    <div class="stats">
-      <div class="stat wide"><div class="l">Ҳамагӣ харид кардаед</div><div class="v" id="sTotal"></div></div>
-      <div class="stat"><div class="l">Шумораи харидҳо</div><div class="v" id="sCount"></div></div>
-      <div class="stat" id="sDebtBox"><div class="l">Қарзи ҷорӣ</div><div class="v" id="sDebt"></div></div>
-      <div class="stat bonus wide hidden" id="sBonusBox"><div class="l">Бонуси VIP (0,2% аз харидҳо)</div><div class="v" id="sBonus"></div></div>
-    </div>
-
-    <div class="tabs" role="tablist">
-      <button class="tab" role="tab" id="tabOrders" aria-selected="true" type="button">Харидҳо</button>
-      <button class="tab" role="tab" id="tabDebts" aria-selected="false" type="button">Қарзҳо</button>
-    </div>
-
-    <div id="paneOrders"></div>
-    <div id="paneDebts" class="hidden"></div>
-  </section>
-
-  <div class="foot">Мағозаи «Кулба» · Истравшан</div>
-</main>
-
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f7fa;color:#1a1a1a;padding-bottom:30px}
+.h{background:#101a14;color:#fff;padding:22px 18px;display:flex;gap:12px;align-items:center}
+.h .l{width:46px;height:46px;border-radius:12px;background:#1f3a2a;display:flex;align-items:center;justify-content:center;font-size:24px}
+.h h1{font-size:22px}.h p{opacity:.8;font-size:13px}
+.c{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:14px;margin:12px;max-width:640px}
+@media(min-width:680px){.c{margin:12px auto}}
+.c h4{font-size:15px;margin-bottom:8px}.c p{font-size:13px;color:#666;margin-bottom:10px}
+.f{display:flex;gap:8px}
+input{flex:1;min-width:0;padding:13px;border:1px solid #ddd;border-radius:10px;font-size:16px}
+button{padding:13px 18px;border:0;border-radius:10px;background:#101a14;color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+button.g{background:#eee;color:#222;width:100%;margin-top:6px}
+.r{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid #f3f3f3;font-size:14px}.r:last-child{border:0}
+.r i{font-style:normal;color:#888}.g2{color:#4caf50}.b{color:#ef5350}
+.big{text-align:center;padding:10px 0}.big b{font-size:30px;color:#4caf50;display:block}.big span{font-size:12px;color:#888}
+.e{text-align:center;padding:24px 14px;color:#999;font-size:14px}.er{color:#ef5350;font-size:13px;margin-top:8px}
+.ft{text-align:center;font-size:12px;color:#aaa;margin-top:14px}
+</style></head><body>
+<div class="h"><div class="l">🪵</div><div><h1>Кулба</h1><p>Ҳисоби харидҳои шумо</p></div></div>
+<div id="fm" class="c"><h4>Рақами телефонро ворид кунед</h4><p>Бо рақаме, ки ҳангоми харид ба мағоза додаед.</p>
+<div class="f"><input id="ph" type="tel" inputmode="tel" placeholder="Масалан: 92 123 45 67" autocomplete="tel"><button onclick="look()">Дидан</button></div><div id="er" class="er"></div></div>
+<div id="o"></div>
+<div class="ft">Мағозаи «Кулба» · Истравшан</div>
 <script>
-(function(){
-  // ====== Танзимот ======
-  var PROJECT_ID = 'kulba-2252c';
-  var DOC_URL = 'https://firestore.googleapis.com/v1/projects/' + PROJECT_ID + '/databases/(default)/documents/kulba/main';
-  var VIP_RATE = 0.002;          // 0,2%
-  var OLD_DEBT_DAYS = 30;
-  var CACHE_KEY = 'kulba_client_db_v1';
-  var PHONE_KEY = 'kulba_client_phone_v1';
-
-  function $(id){ return document.getElementById(id); }
-
-  // ====== Формат ======
-  function fmt(n){
-    n = Number(n) || 0;
-    var neg = n < 0; n = Math.abs(n);
-    var s = (Math.round(n * 100) / 100).toFixed(2);
-    if (s.slice(-3) === '.00') s = s.slice(0, -3);
-    else if (s.slice(-1) === '0') s = s.slice(0, -1);
-    var parts = s.split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    return (neg ? '-' : '') + parts.join(',');
-  }
-  function money(n){ return fmt(n) + ' <small>с.</small>'; }
-  function esc(t){
-    return String(t == null ? '' : t).replace(/[&<>"']/g, function(c){
-      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-    });
-  }
-  function toDate(v){
-    if (!v) return null;
-    var d = (typeof v === 'number') ? new Date(v) : new Date(String(v));
-    if (isNaN(d.getTime())) {
-      var m = String(v).match(/^(\d{1,2})[.\/](\d{1,2})[.\/](\d{4})/);
-      if (m) d = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1]));
-    }
-    return isNaN(d.getTime()) ? null : d;
-  }
-  function p2(n){ return (n < 10 ? '0' : '') + n; }
-  function fmtDate(v){
-    var d = toDate(v);
-    if (!d) return v ? String(v) : '';
-    return p2(d.getDate()) + '.' + p2(d.getMonth() + 1) + '.' + d.getFullYear();
-  }
-  function digits(s){ return String(s || '').replace(/\D/g, ''); }
-  function samePhone(a, b){
-    a = digits(a); b = digits(b);
-    if (a.length < 7 || b.length < 7) return false;
-    return a.slice(-9) === b.slice(-9);
-  }
-  function num(v){ var n = Number(v); return isNaN(n) ? 0 : n; }
-  function first(o, keys){
-    for (var i = 0; i < keys.length; i++){
-      if (o && o[keys[i]] != null && o[keys[i]] !== '') return o[keys[i]];
-    }
-    return null;
-  }
-
-  // ====== Firestore REST -> JS ======
-  function fv(v){
-    if (v == null) return null;
-    if ('stringValue' in v) return v.stringValue;
-    if ('integerValue' in v) return Number(v.integerValue);
-    if ('doubleValue' in v) return Number(v.doubleValue);
-    if ('booleanValue' in v) return v.booleanValue;
-    if ('nullValue' in v) return null;
-    if ('timestampValue' in v) return v.timestampValue;
-    if ('mapValue' in v){
-      var o = {}, f = v.mapValue.fields || {};
-      for (var k in f) if (f.hasOwnProperty(k)) o[k] = fv(f[k]);
-      return o;
-    }
-    if ('arrayValue' in v){
-      var a = [], vals = v.arrayValue.values || [];
-      for (var i = 0; i < vals.length; i++) a.push(fv(vals[i]));
-      return a;
-    }
-    return null;
-  }
-  function findDB(root){
-    if (!root) return {};
-    if (root.sales && root.sales.length !== undefined) return root;
-    for (var k in root){
-      if (!root.hasOwnProperty(k)) continue;
-      var val = root[k];
-      if (typeof val === 'string' && val.charAt(0) === '{'){
-        try { var p = JSON.parse(val); if (p && p.sales) return p; } catch(e){}
-      } else if (val && typeof val === 'object' && !Array.isArray(val) && val.sales){
-        return val;
-      }
-    }
-    return root;
-  }
-  function loadDB(){
-    return fetch(DOC_URL + '?t=' + Date.now(), {cache:'no-store'}).then(function(r){
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    }).then(function(doc){
-      var root = {}, f = doc.fields || {};
-      for (var k in f) if (f.hasOwnProperty(k)) root[k] = fv(f[k]);
-      var db = findDB(root);
-      try { localStorage.setItem(CACHE_KEY, JSON.stringify({t: Date.now(), db: db})); } catch(e){}
-      return {db: db, cached: false};
-    }).catch(function(err){
-      var c = null;
-      try { c = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null'); } catch(e){}
-      if (c && c.db) return {db: c.db, cached: true, t: c.t};
-      throw err;
-    });
-  }
-
-  // ====== Маълумоти мизоҷ ======
-  function arr(x){ return Array.isArray(x) ? x : []; }
-
-  function isVip(db, name, phone, lines){
-    var i, k;
-    for (i = 0; i < lines.length; i++) if (lines[i].vip === true) return true;
-    var lname = String(name || '').toLowerCase();
-    var lists = [db.vip, db.vips, db.vipClients, db.vipList];
-    for (i = 0; i < lists.length; i++){
-      var L = lists[i];
-      if (!L) continue;
-      if (Array.isArray(L)){
-        for (k = 0; k < L.length; k++){
-          var e = L[k];
-          if (typeof e === 'string'){
-            if (e.toLowerCase() === lname || samePhone(e, phone)) return true;
-          } else if (e && (String(e.name || '').toLowerCase() === lname || samePhone(e.phone, phone))) return true;
-        }
-      } else if (typeof L === 'object'){
-        for (k in L){
-          if (!L.hasOwnProperty(k)) continue;
-          if (L[k] && (k.toLowerCase() === lname || samePhone(k, phone))) return true;
-        }
-      }
-    }
-    var cl = db.clients;
-    if (cl){
-      var items = Array.isArray(cl) ? cl : Object.keys(cl).map(function(key){
-        var o = cl[key]; if (o && typeof o === 'object' && !o.name) o.name = key; return o;
-      });
-      for (i = 0; i < items.length; i++){
-        var c = items[i];
-        if (c && c.vip && (String(c.name || '').toLowerCase() === lname || samePhone(c.phone, phone))) return true;
-      }
-    }
-    return false;
-  }
-
-  function buildAccount(db, phone){
-    var sales = arr(db.sales).filter(function(s){
-      return s && samePhone(first(s, ['clientPhone','phone','clientTel']), phone);
-    });
-    var debts = arr(db.debts).filter(function(d){
-      return d && samePhone(first(d, ['phone','clientPhone','tel']), phone);
-    });
-    if (!sales.length && !debts.length) return null;
-
-    var name = '';
-    for (var i = 0; i < sales.length && !name; i++) name = first(sales[i], ['client','clientName','customer','name']) || '';
-    for (var j = 0; j < debts.length && !name; j++) name = first(debts[j], ['name','client','clientName']) || '';
-
-    // гурӯҳбандии ҳар як фармоиш
-    var map = {}, orders = [];
-    sales.forEach(function(s, idx){
-      var oid = first(s, ['orderId','order']) || ('single-' + (s.id || idx));
-      if (!map[oid]){
-        map[oid] = {id: oid, date: first(s, ['date','createdAt','time','ts']), items: [], total: 0};
-        orders.push(map[oid]);
-      }
-      var qty = num(first(s, ['qty','quantity','count']));
-      var price = num(first(s, ['price','salePrice','sellPrice']));
-      var line = first(s, ['total','sum','amount']);
-      line = (line != null) ? num(line) : qty * price;
-      map[oid].items.push({
-        name: first(s, ['product','productName','item','prod','name']) || 'Мол',
-        qty: qty, unit: first(s, ['unit']) || 'шт', price: price, sum: line
-      });
-      map[oid].total += line;
-    });
-    orders.sort(function(a, b){
-      var da = toDate(a.date), dbb = toDate(b.date);
-      return (dbb ? dbb.getTime() : 0) - (da ? da.getTime() : 0);
-    });
-
-    var spent = orders.reduce(function(t, o){ return t + o.total; }, 0);
-    var vip = isVip(db, name, phone, sales);
-
-    var debtList = debts.map(function(d){
-      var pays = arr(d.payments || d.history || d.pays).map(function(p){
-        return {date: first(p, ['date','time','ts']), amount: num(first(p, ['amount','sum','paid']))};
-      });
-      var amt = num(first(d, ['amount','remaining','left','debt','sum']));
-      var date = first(d, ['date','createdAt','since']);
-      var dd = toDate(date);
-      var age = dd ? Math.floor((Date.now() - dd.getTime()) / 86400000) : 0;
-      return {amount: amt, date: date, payments: pays, old: amt > 0 && age >= OLD_DEBT_DAYS, age: age};
-    }).filter(function(d){ return d.amount > 0 || d.payments.length; });
-
-    var debtTotal = debtList.reduce(function(t, d){ return t + d.amount; }, 0);
-
-    return {
-      name: name || 'Мизоҷи азиз', phone: phone, vip: vip,
-      orders: orders, spent: spent, bonus: vip ? spent * VIP_RATE : 0,
-      debts: debtList, debtTotal: debtTotal
-    };
-  }
-
-  // ====== Намоиш ======
-  var state = {db: null, phone: '', acct: null};
-
-  function renderOrders(a){
-    var el = $('paneOrders');
-    if (!a.orders.length){
-      el.innerHTML = '<div class="empty">Харид ҳанӯз сабт нашудааст.</div>';
-      return;
-    }
-    var h = '';
-    a.orders.forEach(function(o, i){
-      var cnt = o.items.length;
-      var body = o.items.map(function(it){
-        return '<div class="item"><div>' + esc(it.name) +
-          '<div class="q">' + fmt(it.qty) + ' ' + esc(it.unit) + ' × ' + fmt(it.price) + '</div></div>' +
-          '<div class="s">' + fmt(it.sum) + '</div></div>';
-      }).join('');
-      if (a.vip){
-        body += '<div class="bonusline"><span>Бонуси VIP</span><span>+' + fmt(o.total * VIP_RATE) + ' с.</span></div>';
-      }
-      h += '<div class="order">' +
-        '<button class="order-h" type="button" aria-expanded="false" data-i="' + i + '">' +
-          '<div><div class="d">' + esc(fmtDate(o.date)) + '</div>' +
-          '<div class="n">' + cnt + ' ' + (cnt === 1 ? 'навъи мол' : 'навъи мол') + '</div></div>' +
-          '<div class="t">' + fmt(o.total) + ' с.</div>' +
-        '</button>' +
-        '<div class="order-b hidden" id="ob' + i + '">' + body + '</div></div>';
-    });
-    el.innerHTML = h;
-    var btns = el.querySelectorAll('.order-h');
-    for (var k = 0; k < btns.length; k++){
-      btns[k].onclick = function(){
-        var i = this.getAttribute('data-i');
-        var b = $('ob' + i);
-        var open = b.classList.contains('hidden');
-        b.classList.toggle('hidden');
-        this.setAttribute('aria-expanded', open ? 'true' : 'false');
-      };
-    }
-  }
-
-  function renderDebts(a){
-    var el = $('paneDebts');
-    if (!a.debts.length){
-      el.innerHTML = '<div class="empty">Шумо қарз надоред. Ташаккур!</div>';
-      return;
-    }
-    var h = '';
-    a.debts.forEach(function(d){
-      h += '<div class="debt-card"><div class="row"><div>' +
-        '<div style="font-size:13px;color:var(--soft)">' + (d.date ? 'Аз ' + esc(fmtDate(d.date)) : 'Қарз') + '</div>' +
-        '</div><div class="amt">' + fmt(d.amount) + ' с.</div></div>';
-      if (d.old) h += '<div class="old">Зиёда аз ' + OLD_DEBT_DAYS + ' рӯз аст. Лутфан пардохт кунед.</div>';
-      if (d.payments.length){
-        h += '<div class="sub">Пардохтҳо</div>';
-        d.payments.forEach(function(p){
-          h += '<div class="pay"><span>' + esc(fmtDate(p.date)) + '</span><b>−' + fmt(p.amount) + ' с.</b></div>';
-        });
-      }
-      h += '</div>';
-    });
-    el.innerHTML = h;
-  }
-
-  function renderAccount(a, cachedInfo){
-    $('cName').textContent = a.name;
-    $('cPhone').textContent = a.phone;
-    $('vipBadge').classList.toggle('hidden', !a.vip);
-    $('sTotal').innerHTML = money(a.spent);
-    $('sCount').innerHTML = fmt(a.orders.length);
-    var box = $('sDebtBox');
-    $('sDebt').innerHTML = a.debtTotal > 0 ? money(a.debtTotal) : 'Нест';
-    box.className = 'stat ' + (a.debtTotal > 0 ? 'debt' : 'ok');
-    $('sBonusBox').classList.toggle('hidden', !a.vip);
-    $('sBonus').innerHTML = money(a.bonus);
-    var om = $('offlineMsg');
-    if (cachedInfo){
-      om.textContent = 'Интернет нест. Маълумоти охирин нишон дода шуд (' + fmtDate(cachedInfo) + ').';
-      om.classList.remove('hidden');
-    } else om.classList.add('hidden');
-    renderOrders(a);
-    renderDebts(a);
-    $('tabDebts').textContent = a.debtTotal > 0 ? 'Қарзҳо •' : 'Қарзҳо';
-    $('loginBox').classList.add('hidden');
-    $('acct').classList.remove('hidden');
-  }
-
-  function setBusy(b){
-    var btn = $('goBtn');
-    btn.disabled = b;
-    btn.innerHTML = b ? '<span class="spin"></span>Лутфан…' : 'Дидан';
-  }
-  function showErr(t){
-    var m = $('loginMsg');
-    m.textContent = t;
-    m.classList.remove('hidden');
-  }
-
-  function go(phone, silent){
-    $('loginMsg').classList.add('hidden');
-    if (digits(phone).length < 9){
-      if (!silent) showErr('Рақами телефонро пурра ворид кунед (на кам аз 9 рақам).');
-      return;
-    }
-    setBusy(true);
-    loadDB().then(function(res){
-      state.db = res.db; state.phone = phone;
-      var a = buildAccount(res.db, phone);
-      if (!a){
-        $('acct').classList.add('hidden');
-        $('loginBox').classList.remove('hidden');
-        if (!silent) showErr('Бо ин рақам харид ёфт нашуд. Рақамро санҷед ё аз фурӯшанда пурсед, ки рақами шуморо сабт кунад.');
-        try { localStorage.removeItem(PHONE_KEY); } catch(e){}
-        return;
-      }
-      state.acct = a;
-      try { localStorage.setItem(PHONE_KEY, phone); } catch(e){}
-      renderAccount(a, res.cached ? res.t : null);
-    }).catch(function(err){
-      var why = (err && err.message) ? err.message : '';
-      if (!silent) showErr('Пайвастшавӣ ба сервер имконнопазир шуд. Интернетро санҷед ва бори дигар кӯшиш кунед.' + (why ? ' [' + why + ']' : ''));
-    }).then(function(){ setBusy(false); });
-  }
-
-  function selectTab(which){
-    var o = which === 'orders';
-    $('tabOrders').setAttribute('aria-selected', o ? 'true' : 'false');
-    $('tabDebts').setAttribute('aria-selected', o ? 'false' : 'true');
-    $('paneOrders').classList.toggle('hidden', !o);
-    $('paneDebts').classList.toggle('hidden', o);
-  }
-
-  // ====== Воқеаҳо ======
-  $('goBtn').onclick = function(){ go($('phone').value, false); };
-  $('phone').onkeydown = function(e){ if (e.key === 'Enter') go(this.value, false); };
-  $('tabOrders').onclick = function(){ selectTab('orders'); };
-  $('tabDebts').onclick = function(){ selectTab('debts'); };
-  $('refreshBtn').onclick = function(){ go(state.phone, false); };
-  $('exitBtn').onclick = function(){
-    try { localStorage.removeItem(PHONE_KEY); } catch(e){}
-    state = {db: null, phone: '', acct: null};
-    $('acct').classList.add('hidden');
-    $('loginBox').classList.remove('hidden');
-    $('phone').value = '';
-    selectTab('orders');
-  };
-
-  // Ворид шудани худкор
-  var saved = null;
-  try { saved = localStorage.getItem(PHONE_KEY); } catch(e){}
-  if (saved){ $('phone').value = saved; go(saved, true); }
-})();
-</script>
-</body>
-</html>
+var API='AIzaSyB5oBJ4E2Hpf0YsFjNoytTRXCiM1-82Nng',PID='kulba2';
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function fmt(n){n=Math.round((+n||0)*100)/100;return(Number.isInteger(n)?String(Math.abs(n)):Math.abs(n).toFixed(2)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+function dt(d){d=new Date(d);if(isNaN(d))return'';function p(n){return String(n).padStart(2,'0')}return p(d.getDate())+'.'+p(d.getMonth()+1)+'.'+d.getFullYear()}
+var o=document.getElementById('o'),fm=document.getElementById('fm'),er=document.getElementById('er');
+function show(P){
+ fm.style.display='none';
+ var h='<div class="c"><h4>'+(P.vip?'⭐ ':'')+esc(P.name)+'</h4>';
+ if(P.vip)h+='<div class="big"><b>'+fmt(P.bonus)+' TJS</b><span>🎁 Бонуси шумо'+(P.rate?' ('+esc(P.rate)+'%)':'')+'</span></div>';
+ h+='<div class="r"><i>Ҷамъи харид</i><b>'+fmt(P.spent)+' TJS</b></div><div class="r"><i>Шумораи харид</i><b>'+esc(P.orders)+'</b></div>';
+ if(P.debt>0)h+='<div class="r"><i>Қарз</i><b class="b">'+fmt(P.debt)+' TJS</b></div>'+(P.dd?'<div class="r"><i>Аз санаи</i><b>'+dt(P.dd)+'</b></div>':'');
+ h+='</div>';
+ if(P.debt>0&&P.dh&&P.dh.length)h+='<div class="c"><h4>💳 Таърихи қарз</h4>'+P.dh.map(function(x){return'<div class="r"><span>'+dt(x.d)+'</span><b class="'+(x.t==='-'?'g2':x.t==='+'?'b':'')+'">'+(x.t==='-'?'− ':x.t==='+'?'+ ':'↩ ')+fmt(x.a)+'</b></div>'}).join('')+'</div>';
+ h+='<div class="c"><h4>🧾 Харидҳои охир</h4>'+((P.items||[]).map(function(x){return'<div class="r"><span>'+esc(x.n)+' × '+esc(x.q)+' '+esc(x.u)+'<br><i>'+dt(x.d)+'</i></span><b>'+fmt(x.s)+'</b></div>'}).join('')||'<div class="e">Харид нест</div>')+'</div>';
+ h+='<div class="c" style="background:none;border:0;padding:0"><button class="g" onclick="back()">⬅️ Рақами дигар</button></div><div class="ft">Нав шуд: '+dt(P.t)+'</div>';
+ o.innerHTML=h}
+function back(){o.innerHTML='';fm.style.display='';er.textContent='';document.getElementById('ph').focus()}
+function look(){
+ var raw=document.getElementById('ph').value,d=raw.replace(/\D/g,'');
+ if(d.length<9){er.textContent='Рақамро пурра нависед (9 рақам)';return}
+ var id=d.slice(-9);er.textContent='Интизор шавед...';
+ try{localStorage.setItem('kph',raw)}catch(e){}
+ fetch('https://firestore.googleapis.com/v1/projects/'+PID+'/databases/(default)/documents/portal/'+id+'?key='+API)
+ .then(function(r){if(r.status===404||r.status===403){er.textContent='Бо ин рақам ҳисоб ёфт нашуд. Аз мағоза пурсед.';return null}if(!r.ok)throw 0;return r.json()})
+ .then(function(j){if(!j)return;var P=JSON.parse(j.fields.d.stringValue);er.textContent='';show(P)})
+ .catch(function(){er.textContent='Хато шуд. Интернетро санҷед ва боз кӯшиш кунед.'})}
+document.getElementById('ph').addEventListener('keydown',function(e){if(e.key==='Enter')look()});
+(function(){var P=null;try{var h=location.hash.slice(1);if(h)P=JSON.parse(decodeURIComponent(escape(atob(h))))}catch(e){}
+ if(P&&typeof P==='object'&&P.name){show(P);return}
+ try{var s=localStorage.getItem('kph');if(s)document.getElementById('ph').value=s}catch(e){}})();
+</script></body></html>
